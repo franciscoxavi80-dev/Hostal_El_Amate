@@ -11,14 +11,15 @@
 
 <style>
 :root {
---blanco-puro: #FFFFFF;
---fondo-crema: #FDF9EC;
---crema-oscuro: #F2EBD9;
---verde-logo: #386622;
---verde-oliva: #5a704b;
---texto-oscuro: #2C2C2C;
---texto-suave: #666666;
---dorado-suave: #B89C65;
+    --blanco-puro: #FFFFFF;
+    --fondo-crema: #FDF9EC;
+    --crema-oscuro: #F2EBD9;
+    --verde-logo: #386622;
+    --verde-oliva: #5a704b;
+    --texto-oscuro: #2C2C2C;
+    --texto-suave: #666666;
+    --dorado-suave: #B89C65;
+    --espaciado-seccion: 80px 5%;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,185 +27,135 @@
 html { scroll-behavior: smooth; }
 
 body {
-background-color: var(--fondo-crema);
-color: var(--texto-oscuro);
-font-family: 'Lato', sans-serif;
-line-height: 1.6;
-position: relative;
+    background-color: var(--fondo-crema);
+    color: var(--texto-oscuro);
+    font-family: 'Lato', sans-serif;
+    line-height: 1.7;
+    position: relative;
 }
 
-/* --- MARCA DE AGUA --- */
+/* --- MARCA DE AGUA OPTIMIZADA --- */
 body::before {
-content: '';
-position: fixed;
-top: 0; left: 0;
-width: 100vw; height: 100vh;
-background: url('imagenes/logo-amate.jpg') center center no-repeat;
-background-size: 50%;
-opacity: 0.08;
-z-index: -1;
-pointer-events: none;
-mix-blend-mode: multiply;
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: url('imagenes/logo-amate.jpg') center center no-repeat;
+    background-size: 50%;
+    opacity: 0.04; 
+    z-index: -1;
+    pointer-events: none;
 }
 
 h1, h2, h3, h4 {
-font-family: 'Playfair Display', serif;
-font-weight: 600;
-color: var(--texto-oscuro);
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--texto-oscuro);
 }
 
 header {
-background-color: rgba(250, 250, 250, 0.95);
-padding: 10px 5%;
-position: fixed;
-width: 100%;
-top: 0;
-z-index: 1000;
-display: flex;
-justify-content: space-between;
-align-items: center;
-backdrop-filter: blur(5px);
-border-bottom: 1px solid rgba(0,0,0,0.05);
-transition: all 0.3s ease;
+    background-color: rgba(253, 249, 236, 0.95);
+    padding: 15px 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
 }
 
-.logo-group {
-display: flex;
-align-items: center;
-gap: 15px;
-}
+.logo-group { display: flex; align-items: center; gap: 15px; }
 
 .logo-img {
-height: 60px;
-width: 60px;
-object-fit: cover;
-border-radius: 50%;
-mix-blend-mode: multiply;
-cursor: zoom-in;
-border: 2px solid var(--crema-oscuro);
-transition: transform 0.3s ease;
+    height: 60px; width: 60px; object-fit: cover; border-radius: 50%;
+    mix-blend-mode: multiply; cursor: zoom-in;
+    border: 2px solid var(--crema-oscuro); transition: transform 0.3s ease;
 }
-.logo-img:hover {
-transform: scale(1.05);
-}
+.logo-img:hover { transform: scale(1.05); }
 
 .name-link { text-decoration: none; }
+.hotel-name-header { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600; color: var(--dorado-suave); letter-spacing: 1px; }
 
-.hotel-name-header {
-font-family: 'Playfair Display', serif;
-font-size: 1.8rem;
-font-weight: 600;
-color: var(--dorado-suave);
-letter-spacing: 1px;
-}
-
+/* --- MENÚ DE NAVEGACIÓN --- */
 .menu-hamburguesa {
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-width: 30px;
-height: 21px;
-cursor: pointer;
-z-index: 1100;
+    background: none; border: none;
+    display: flex; flex-direction: column; justify-content: space-between;
+    width: 30px; height: 21px; cursor: pointer; z-index: 1100; padding: 0;
 }
-
-.menu-hamburguesa span {
-width: 100%;
-height: 3px;
-background-color: var(--texto-oscuro);
-transition: 0.3s;
-}
-
+.menu-hamburguesa span { width: 100%; height: 3px; background-color: var(--texto-oscuro); transition: 0.3s; }
 .menu-hamburguesa.abierto span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
 .menu-hamburguesa.abierto span:nth-child(2) { opacity: 0; }
 .menu-hamburguesa.abierto span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-/* MENU ACTUALIZADO */
 nav {
-display: none;
-flex-direction: column;
-background-color: var(--fondo-crema); 
-position: absolute;
-top: 100%;
-right: 5%;
-width: 25%;
-min-width: 260px;
-padding: 10px 0;
-box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-border: 1px solid var(--crema-oscuro);
-border-radius: 4px;
-border-top: 3px solid var(--verde-logo); 
+    display: none; flex-direction: column; background-color: var(--fondo-crema); 
+    position: absolute; top: 100%; right: 5%; width: 25%; min-width: 260px;
+    padding: 10px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 1px solid var(--crema-oscuro); border-radius: 8px; border-top: 4px solid var(--verde-logo); 
 }
-
 nav.activo { display: flex; }
-
 nav a {
-padding: 12px 0; 
-margin: 0;
-text-align: center;
-text-decoration: none;
-color: var(--texto-oscuro);
-font-weight: 400;
-letter-spacing: 2px;
-text-transform: uppercase;
-font-size: 0.95rem;
-transition: all 0.3s ease;
-display: block;
+    padding: 12px 0; margin: 0; text-align: center; text-decoration: none;
+    color: var(--texto-oscuro); font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; font-size: 0.95rem; transition: all 0.3s ease; display: block;
 }
+nav a:hover, nav a.active { color: var(--verde-logo); background-color: var(--crema-oscuro); }
 
-nav a:hover { 
-color: var(--verde-logo); 
-background-color: var(--crema-oscuro); 
-}
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: opacity, transform; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-section { padding: 100px 5%; }
+section { padding: var(--espaciado-seccion); }
 .contenedor-interno { max-width: 1100px; margin: 0 auto; }
 
-.encabezado-seccion { text-align: center; margin-bottom: 60px; }
-.encabezado-seccion h2 { font-size: 2.5rem; margin-bottom: 15px; }
-.linea-decorativa { width: 60px; height: 2px; background-color: var(--dorado-suave); margin: 0 auto; }
-.encabezado-seccion p { margin-top: 15px; color: var(--texto-suave); font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.encabezado-seccion { text-align: center; margin-bottom: 50px; }
+.encabezado-seccion h2 { font-size: 2.5rem; margin-bottom: 10px; }
+.linea-decorativa { width: 60px; height: 2px; background-color: var(--dorado-suave); margin: 0 auto 20px; }
+.encabezado-seccion p { color: var(--texto-suave); font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-#inicio { padding: 0; height: 100vh; position: relative; }
+/* --- HERO (KEN BURNS) --- */
+#inicio { padding: 0; height: 100vh; height: 100svh; position: relative; overflow: hidden; }
+.hero-slider { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background-color: var(--texto-oscuro); }
+.slide {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center; opacity: 0;
+    transition: opacity 1.5s ease-in-out, transform 8s linear;
+    transform: scale(1); will-change: opacity, transform;
+}
+.slide.active { opacity: 1; transform: scale(1.08); z-index: 2; }
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)); z-index: 3;
+}
 .hero-contenido {
-background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('imagenes/hero-principal.jpg') no-repeat center center/cover;
-height: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-color: var(--blanco-puro);
-padding: 0 20px;
+    position: relative; z-index: 4; height: 100%; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center; color: var(--blanco-puro); padding: 0 20px;
 }
 .hero-contenido h1 { font-size: 4rem; margin-bottom: 15px; font-style: italic; color: var(--blanco-puro); letter-spacing: 1px;}
 .hero-contenido p { font-size: 1.2rem; font-weight: 300; margin-bottom: 40px; max-width: 600px; letter-spacing: 0.5px;}
+.cursor-typing { display: inline-block; width: 3px; background-color: var(--blanco-puro); margin-left: 4px; animation: parpadeoCursor 0.8s infinite; }
+@keyframes parpadeoCursor { 50% { background-color: transparent; } }
 
 .btn-principal {
-background-color: var(--verde-logo);
-color: var(--blanco-puro);
-padding: 15px 40px;
-text-decoration: none;
-border-radius: 2px;
-font-size: 0.9rem;
-text-transform: uppercase;
-letter-spacing: 2px;
-transition: all 0.3s;
-border: 1px solid var(--verde-logo);
+    background-color: var(--verde-logo); color: var(--blanco-puro); padding: 15px 40px; text-decoration: none;
+    border-radius: 4px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
+    transition: all 0.3s; border: 1px solid var(--verde-logo);
 }
 .btn-principal:hover { background-color: transparent; border: 1px solid var(--blanco-puro); }
 
+/* --- NOSOTROS --- */
 .grid-nosotros { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
 .texto-nosotros p { margin-bottom: 20px; color: var(--texto-suave); font-size: 1.05rem; }
-
 .btn-desplegar-filosofia {
-background: transparent; border: 2px solid var(--verde-logo); color: var(--verde-logo);
-padding: 15px 25px; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-cursor: pointer; display: flex; align-items: center; gap: 15px; border-radius: 4px;
-transition: all 0.3s ease; width: 100%; justify-content: center; margin-top: 10px;
+    background: transparent; border: 2px solid var(--verde-logo); color: var(--verde-logo);
+    padding: 15px 25px; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    cursor: pointer; display: flex; align-items: center; gap: 15px; border-radius: 4px;
+    transition: all 0.3s ease; width: 100%; justify-content: center; margin-top: 10px;
 }
 .btn-desplegar-filosofia:hover { background: var(--verde-logo); color: var(--blanco-puro); }
-
 .btn-desplegar-filosofia .icono-rayitas { display: flex; flex-direction: column; gap: 5px; }
 .btn-desplegar-filosofia .icono-rayitas span { width: 22px; height: 2px; background-color: var(--verde-logo); transition: all 0.3s ease; }
 .btn-desplegar-filosofia:hover .icono-rayitas span { background-color: var(--blanco-puro); }
@@ -216,474 +167,869 @@ transition: all 0.3s ease; width: 100%; justify-content: center; margin-top: 10p
 .contenedor-filosofia-oculto.abierto { grid-template-rows: 1fr; }
 .contenido-filosofia-interior { overflow: hidden; padding-top: 0; transition: padding-top 0.5s ease-out; }
 .contenedor-filosofia-oculto.abierto .contenido-filosofia-interior { padding-top: 30px; }
-
-.caja-mision { background: var(--blanco-puro); padding: 35px; border-left: 4px solid var(--dorado-suave); box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 25px; }
+.caja-mision { background: var(--blanco-puro); padding: 35px; border-left: 4px solid var(--dorado-suave); box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 25px; border-radius: 0 8px 8px 0; }
 .caja-mision h3 { margin-bottom: 15px; color: var(--verde-logo); font-size: 1.5rem; }
 .caja-mision p { text-align: justify; font-size: 0.95rem; }
-
 .lista-valores { list-style: none; padding-left: 0; }
 .lista-valores li { margin-bottom: 10px; color: var(--texto-suave); font-size: 1rem; display: flex; align-items: center; gap: 10px; }
 .lista-valores li::before { content: '✔'; color: var(--dorado-suave); font-weight: bold; font-size: 1.1rem; }
 
+/* --- SERVICIOS --- */
 #servicios { background-color: var(--blanco-puro); }
-.grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
+.grid-servicios { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; text-align: center; }
 .item-servicio { padding: 20px; transition: transform 0.3s; }
 .item-servicio:hover { transform: translateY(-5px); }
 .icono-servicio { font-size: 2.5rem; margin-bottom: 15px; display: block; }
-.item-servicio h4 { font-size: 1.2rem; margin-bottom: 10px; }
-.item-servicio p { color: var(--texto-suave); font-size: 0.95rem; }
 
-.grid-habitaciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-.tarjeta { background: var(--blanco-puro); border-radius: 4px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.04); transition: all 0.3s; }
-.tarjeta:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-
-.img-principal { width: 100%; height: 250px; object-fit: cover; display: block; cursor: zoom-in; }
+/* --- HABITACIONES --- */
+.grid-habitaciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.tarjeta { background: var(--fondo-crema); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.04); transition: all 0.3s; border: 1px solid var(--crema-oscuro); display: flex; flex-direction: column; }
+.tarjeta:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.08); transform: translateY(-5px); }
+.img-container-premium { position: relative; overflow: hidden; height: 250px; background: #000; }
+.img-principal { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; transition: opacity 0.3s ease-in-out; }
 .miniaturas { display: flex; gap: 4px; padding: 4px; background: var(--blanco-puro); justify-content: space-between; }
-.miniaturas img { width: 32%; height: 65px; object-fit: cover; cursor: pointer; opacity: 0.6; transition: 0.3s; }
-.miniaturas img:hover { opacity: 1; }
+.miniaturas img { width: 32%; height: 65px; object-fit: cover; cursor: pointer; opacity: 0.6; transition: 0.3s; border-radius: 4px; }
+.miniaturas img.active, .miniaturas img:hover { opacity: 1; border: 1px solid var(--dorado-suave); }
+.tarjeta-info { padding: 25px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; flex-grow: 1; }
+.precio { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--dorado-suave); font-size: 1.5rem; display: block; margin-bottom: 20px; }
+.btn-secundario {
+    background-color: transparent; color: var(--verde-logo); border: 2px solid var(--verde-logo);
+    padding: 10px 20px; border-radius: 4px; font-size: 0.85rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; width: 100%;
+}
+.btn-secundario:hover { background-color: var(--verde-logo); color: var(--blanco-puro); box-shadow: 0 5px 15px rgba(56, 102, 34, 0.2); }
 
-.tarjeta-info { padding: 30px; text-align: center; }
-.tarjeta-info h3 { font-size: 1.5rem; margin-bottom: 10px; }
-.tarjeta-info p { color: var(--texto-suave); margin-bottom: 20px; font-size: 0.95rem; }
-.precio { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--dorado-suave); font-size: 1.5rem; display: block; }
-
-.modal { display: none; position: fixed; z-index: 2000; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); }
-.modal-contenido { margin: auto; display: block; max-width: 90%; max-height: 80vh; animation: zoom 0.3s ease; }
-@keyframes zoom { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
-.cerrar-modal { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-.cerrar-modal:hover { color: var(--dorado-suave); }
-
-#recuerdos { background-color: var(--blanco-puro); }
-.grid-recuerdos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.tarjeta-recuerdo { padding: 30px; border: 1px solid var(--crema-oscuro); text-align: center; border-radius: 4px; }
-.tarjeta-recuerdo img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 15px; cursor: zoom-in; }
+/* --- DINÁMICO: RECUERDOS (CARRUSEL DE GOOGLE MAPS) --- */
+#recuerdos { background-color: var(--blanco-puro); position: relative; overflow: hidden; }
+.carousel-viewport { overflow: hidden; width: 100%; padding: 10px 0; }
+.track-recuerdos { display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); gap: 30px; will-change: transform; }
+.tarjeta-recuerdo { 
+    flex: 0 0 calc((100% - 60px) / 3); 
+    padding: 30px; 
+    border: 1px solid var(--crema-oscuro); 
+    text-align: center; 
+    border-radius: 8px; 
+    background-color: var(--fondo-crema);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.google-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 0.8rem;
+    color: #4285F4;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    background: rgba(66, 133, 244, 0.06);
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-decoration: none; /* Añadido para que no tenga línea debajo */
+    transition: all 0.3s ease; /* Transición suave */
+}
+.google-badge:hover {
+    background: rgba(66, 133, 244, 0.15); /* Fondo más oscuro al pasar el ratón */
+    transform: scale(1.05); /* Pequeño efecto de zoom */
+}
 .estrellas { color: var(--dorado-suave); margin-bottom: 15px; letter-spacing: 2px; }
-.texto-recuerdo { font-style: italic; color: var(--texto-suave); margin-bottom: 15px; }
-.autor-recuerdo { font-family: 'Playfair Display', serif; font-weight: 600; color: var(--texto-oscuro); }
+.texto-recuerdo { font-style: italic; color: var(--texto-suave); margin-bottom: 15px; font-size: 0.95rem; flex-grow: 1; margin-top: 15px; } /* Ajuste de margen por el botón absoluto */
+.autor-recuerdo { font-weight: 700; color: var(--texto-oscuro); }
 
-.contacto-contenedor { background: var(--blanco-puro); padding: 50px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); max-width: 700px; margin: 0 auto; border-top: 4px solid var(--verde-logo); }
-.form-grupo { margin-bottom: 25px; }
-.form-grupo label { display: block; margin-bottom: 10px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--texto-oscuro); }
-.form-grupo input, .form-grupo select { width: 100%; padding: 15px; border: 1px solid #E0E0E0; background-color: #FAFAFA; font-family: inherit; font-size: 1rem; transition: border 0.3s; }
-.form-grupo input:focus, .form-grupo select:focus { outline: none; border-color: var(--verde-logo); background-color: var(--blanco-puro); }
+.carousel-controles { display: flex; justify-content: center; gap: 15px; margin-top: 35px; }
+.btn-control-carousel { background: var(--fondo-crema); border: 1px solid var(--crema-oscuro); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--texto-oscuro); transition: all 0.3s ease; font-size: 1rem; }
+.btn-control-carousel:hover { background: var(--verde-logo); color: var(--blanco-puro); border-color: var(--verde-logo); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-.btn-enviar { background-color: var(--verde-logo); color: var(--blanco-puro); border: none; padding: 18px; width: 100%; font-size: 1rem; cursor: pointer; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: background 0.3s; margin-top: 10px; }
-.btn-enviar:hover { background-color: var(--verde-oliva); }
+/* --- GALERÍA COLLAGE --- */
+#galeria-momentos { background-color: var(--fondo-crema); }
+.grid-galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); grid-auto-rows: 250px; gap: 15px; }
+.item-galeria { position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+.img-galeria { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: transform 0.6s ease; }
+.item-galeria:hover .img-galeria { transform: scale(1.1); }
+@media (min-width: 768px) {
+    .item-galeria.destacado-ancho { grid-column: span 2; }
+    .item-galeria.destacado-alto { grid-row: span 2; }
+}
 
-/* --- FOOTER Y REDES SOCIALES --- */
-footer { background-color: var(--texto-oscuro); color: var(--blanco-puro); padding: 60px 5% 30px; text-align: center; }
+/* --- RESERVAS --- */
+.contacto-contenedor { background: var(--blanco-puro); padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 700px; margin: 0 auto; border-top: 4px solid var(--verde-logo); }
+.form-grupo { margin-bottom: 20px; }
+.form-grupo label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--texto-oscuro); }
+.form-grupo input, .form-grupo select, .form-grupo textarea { width: 100%; padding: 12px; border: 1px solid #E0E0E0; background-color: #FAFAFA; font-family: inherit; font-size: 1rem; transition: all 0.3s ease; border-radius: 4px; }
+.form-grupo input:focus, .form-grupo select:focus, .form-grupo textarea:focus { outline: none; border-color: var(--verde-logo); background-color: var(--blanco-puro); }
+.form-grupo textarea { resize: vertical; min-height: 100px; }
+.live-calculadora-box { background-color: var(--fondo-crema); border: 1px dashed var(--dorado-suave); border-radius: 6px; padding: 15px; margin-bottom: 20px; display: none; animation: zoom 0.3s ease; }
+.live-calculadora-box h4 { font-size: 1.1rem; color: var(--verde-logo); margin-bottom: 5px; font-family: 'Lato', sans-serif; text-transform: uppercase; font-weight: 700;}
+.botones-envio { display: flex; gap: 15px; margin-top: 10px; }
+.btn-enviar { flex: 1; color: var(--blanco-puro); border: none; padding: 16px; font-size: 0.95rem; cursor: pointer; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: opacity 0.3s, transform 0.3s; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.btn-enviar:hover { opacity: 0.9; transform: translateY(-2px); }
+.btn-enviar.wa { background-color: #25D366; }
+.btn-enviar.correo { background-color: var(--texto-oscuro); }
+
+/* --- FOOTER & MODAL --- */
+footer { background-color: var(--texto-oscuro); color: var(--blanco-puro); padding: 50px 5% 30px; text-align: center; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1100px; margin: 0 auto 40px; text-align: left; }
 .footer-col h4 { color: var(--dorado-suave); margin-bottom: 20px; font-family: 'Lato', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
 .footer-col p, .footer-col a { color: #A0A0A0; font-size: 0.9rem; margin-bottom: 10px; display: block; text-decoration: none; transition: 0.3s; }
 .footer-col a:hover { color: var(--blanco-puro); }
-
 .redes-sociales-container { display: flex; gap: 15px; margin-top: 15px; }
 .icono-social { color: #A0A0A0; font-size: 1.8rem; transition: all 0.3s ease; }
 .icono-social:hover { color: var(--dorado-suave); transform: translateY(-3px); }
-
 .copyright { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.8rem; color: #888; }
+.btn-whatsapp-flotante { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: #FFF; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); z-index: 1000; text-decoration: none; transition: all 0.3s ease; }
+.btn-whatsapp-flotante:hover { transform: scale(1.1); background-color: #1EBE57; color: #FFF; }
 
-/* --- BOTÓN FLOTANTE WHATSAPP --- */
-.btn-whatsapp-flotante {
-position: fixed;
-bottom: 30px;
-right: 30px;
-background-color: #25D366;
-color: #FFF;
-width: 60px;
-height: 60px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 35px;
-box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-z-index: 1000;
-text-decoration: none;
-transition: all 0.3s ease;
-}
-.btn-whatsapp-flotante:hover {
-transform: scale(1.1);
-background-color: #1EBE57;
-color: #FFF;
-}
+.modal { display: none; position: fixed; z-index: 2000; padding-top: 60px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); }
+.modal-contenido { margin: auto; display: block; max-width: 90%; max-height: 80vh; animation: zoom 0.3s ease; border-radius: 8px; }
+@keyframes zoom { from {transform: scale(0.9); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+.cerrar-modal { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.cerrar-modal:hover { color: var(--dorado-suave); }
 
 @media (max-width: 900px) {
-.grid-nosotros { grid-template-columns: 1fr; gap: 20px; }
-.hero-contenido h1 { font-size: 2.8rem; }
-.logo-group { gap: 8px; }
-.hotel-name-header { font-size: 1.4rem; }
-.logo-img { height: 45px; width: 45px; }
-.btn-whatsapp-flotante { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 30px; }
+    section { padding: 60px 5%; }
+    .grid-nosotros { grid-template-columns: 1fr; gap: 30px; }
+    .hero-contenido h1 { font-size: 2.8rem; }
+    .btn-whatsapp-flotante { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 30px; }
+    .botones-envio { flex-direction: column; }
+    .tarjeta-recuerdo { flex: 0 0 calc((100% - 30px) / 2); }
+}
+@media (max-width: 600px) {
+    .tarjeta-recuerdo { flex: 0 0 100%; }
 }
 </style>
 </head>
 <body>
 
 <header>
-<div class="logo-group">
-<img src="imagenes/logo-amate.jpg" alt="Logo Hostal El Amate" class="logo-img ampliable-zoom">
-<a href="#inicio" class="name-link">
-<span class="hotel-name-header">Hostal El Amate</span>
-</a>
-</div>
+    <div class="logo-group">
+        <img src="imagenes/logo-amate.jpg" alt="Logo Hostal El Amate" class="logo-img ampliable-zoom">
+        <a href="#inicio" class="name-link">
+            <span class="hotel-name-header">Hostal El Amate</span>
+        </a>
+    </div>
 
-<div class="menu-hamburguesa" id="link-menu">
-<span></span>
-<span></span>
-<span></span>
-</div>
+    <button class="menu-hamburguesa" id="link-menu" aria-label="Abrir menú de navegación">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-<nav id="menu-navegacion">
-<a href="#inicio">Inicio</a>
-<a href="#nosotros">Nosotros</a>
-<a href="#servicios">Servicios</a>
-<a href="#habitaciones">Habitaciones</a>
-<a href="#recuerdos">Experiencias</a>
-<a href="#reservas">Reservar</a>
-</nav>
+    <nav id="menu-navegacion">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#habitaciones">Habitaciones</a>
+        <a href="#recuerdos">Experiencias</a>
+        <a href="#galeria-momentos">Galería</a>
+        <a href="#reservas">Reservar</a>
+    </nav>
 </header>
 
 <div id="modalImagen" class="modal">
-<span class="cerrar-modal" id="btnCerrar">×</span>
-<img class="modal-contenido" id="imgAmpliacion">
+    <span class="cerrar-modal" id="btnCerrar">×</span>
+    <img class="modal-contenido" id="imgAmpliacion">
 </div>
 
 <section id="inicio">
-<div class="hero-contenido">
-<h1>El Refugio Colonial</h1>
-<p>Descubre la magia de Suchitoto. Un espacio donde la historia, la naturaleza y la hospitalidad salvadoreña se encuentran.</p>
-<a href="#reservas" class="btn-principal">Planifica tu Viaje</a>
-</div>
+    <div class="hero-slider" id="heroSlider">
+        <div class="slide active" style="background-image: url('imagenes/hero-principal.jpg');"></div>
+        <div class="slide" style="background-image: url('imagenes/hero-vistas.jpg');"></div>
+        <div class="slide" style="background-image: url('imagenes/hero-fachada.jpg');"></div>
+        <div class="slide" style="background-image: url('imagenes/hero-facilities.jpg');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-contenido">
+        <h1>Un Refugio <br><span id="texto-dinamico">Colonial</span><span class="cursor-typing">|</span></h1>
+        <p>Descubre la magia de Suchitoto. Un espacio donde la historia, la naturaleza y la hospitalidad salvadoreña se encuentran.</p>
+        <a href="#reservas" class="btn-principal">Planifica tu Viaje</a>
+    </div>
 </section>
 
 <section id="nosotros">
-<div class="contenedor-interno">
-<div class="encabezado-seccion">
-<h2>Nuestra Esencia</h2>
-<div class="linea-decorativa"></div>
-</div>
+    <div class="contenedor-interno">
+        <div class="encabezado-seccion">
+            <h2>Nuestra Esencia</h2>
+            <div class="linea-decorativa"></div>
+        </div>
 
-<div class="grid-nosotros">
-<div class="texto-nosotros">
-<h3 style="margin-bottom: 15px; font-size: 1.8rem;">Bienvenidos a su hogar en Suchitoto</h3>
-<p>Hostal El Amate nace del profundo amor por nuestras raíces y el deseo de ofrecer a los viajeros un espacio auténtico. Al igual que el árbol de Amate, que extiende sus fuertes raíces para brindar sombra y protección, nosotros buscamos ser ese cobijo para quienes exploran las calles empedradas de nuestra ciudad.</p>
-<p>Eduardo Padilla y todo el equipo trabajamos diariamente para que cada detalle de tu estancia te conecte con la tranquilidad y la cultura local.</p>
-</div>
+        <div class="grid-nosotros">
+            <div class="texto-nosotros">
+                <h3 style="margin-bottom: 15px; font-size: 1.8rem;">Bienvenidos a su hogar en Suchitoto</h3>
+                <p>Hostal El Amate nace del profundo amor por nuestras raíces y el deseo de ofrecer a los viajeros un espacio auténtico. Al igual que el árbol de Amate, que extiende sus fuertes raíces para brindar sombra y protección, nosotros buscamos ser ese cobijo para quienes exploran las calles empedradas de nuestra ciudad.</p>
+                <p>Eduardo Padilla y todo el equipo trabajamos diariamente para que cada detalle de tu estancia te conecte con la tranquilidad y la cultura local.</p>
+            </div>
 
-<div class="mision-vision">
-<button class="btn-desplegar-filosofia" id="btn-toggle-filosofia">
-<div class="icono-rayitas">
-<span></span>
-<span></span>
-<span></span>
-</div>
-Conoce Nuestra Filosofía
-</button>
+            <div class="mision-vision">
+                <button class="btn-desplegar-filosofia" id="btn-toggle-filosofia">
+                    <div class="icono-rayitas">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    Conoce Nuestra Filosofía
+                </button>
 
-<div class="contenedor-filosofia-oculto" id="contenedor-filosofia">
-<div class="contenido-filosofia-interior">
-<div class="caja-mision">
-<h3>Nuestra Misión</h3>
-<p style="color: var(--texto-suave);">Proporcionar servicios de hospedaje de alta calidad en un entorno seguro, confortable y culturalmente significativo, garantizando una atención personalizada que responda a las necesidades de cada huésped. Nos comprometemos a preservar el legado histórico de nuestra propiedad, promover el turismo responsable en Suchitoto y contribuir al desarrollo económico y social de la comunidad.</p>
-</div>
-
-<div class="caja-mision">
-<h3>Nuestra Visión</h3>
-<p style="color: var(--texto-suave);">Consolidarnos como uno de los principales referentes de hospedaje en Suchitoto, reconocidos por la excelencia en el servicio, la preservación del patrimonio cultural y la creación de experiencias auténticas para nuestros huéspedes. Aspiramos a expandir nuestra oferta turística de manera sostenible e innovadora.</p>
-</div>
-
-<div class="caja-mision">
-<h3>Nuestros Valores</h3>
-<ul class="lista-valores">
-<li>Hospitalidad y Calidad de servicio</li>
-<li>Integridad y Respeto por la cultura</li>
-<li>Compromiso comunitario</li>
-<li>Sostenibilidad</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+                <div class="contenedor-filosofia-oculto" id="contenedor-filosofia">
+                    <div class="contenido-filosofia-interior">
+                        <div class="caja-mision">
+                            <h3>Nuestra Misión</h3>
+                            <p style="color: var(--texto-suave);">Proporcionar servicios de hospedaje de alta calidad en un entorno seguro, confortable y culturalmente significativo, garantizando una atención personalizada que responda a las necesidades de cada huésped. Nos comprometemos a preservar el legado histórico de nuestra propiedad, promover el turismo responsable en Suchitoto y contribuir al desarrollo económico y social de la comunidad.</p>
+                        </div>
+                        <div class="caja-mision">
+                            <h3>Nuestra Visión</h3>
+                            <p style="color: var(--texto-suave);">Consolidarnos como uno de los principales referentes de hospedaje en Suchitoto, reconocidos por la excelencia en el servicio, la preservación del patrimonio cultural y la creación de experiencias auténticas para nuestros huéspedes. Aspiramos a expandir nuestra oferta turística de manera sostenible e innovadora.</p>
+                        </div>
+                        <div class="caja-mision">
+                            <h3>Nuestros Valores</h3>
+                            <ul class="lista-valores">
+                                <li>Hospitalidad y Calidad de servicio</li>
+                                <li>Integridad y Respeto por la cultura</li>
+                                <li>Compromiso comunitario</li>
+                                <li>Sostenibilidad</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="servicios">
-<div class="contenedor-interno">
-<div class="encabezado-seccion">
-<h2>Amenidades de Primer Nivel</h2>
-<div class="linea-decorativa"></div>
-<p>Todo lo que necesitas para un descanso reparador y una aventura inolvidable.</p>
-</div>
+    <div class="contenedor-interno">
+        <div class="encabezado-seccion">
+            <h2>Amenidades de Primer Nivel</h2>
+            <div class="linea-decorativa"></div>
+            <p>Todo lo que necesitas para un descanso reparador y una aventura inolvidable.</p>
+        </div>
 
-<div class="grid-servicios">
-<div class="item-servicio">
-<span class="icono-servicio">🌐</span>
-<h4>Conexión de Alta Velocidad</h4>
-<p>Wi-Fi gratuito en todas las áreas para que compartas tus momentos o trabajes sin interrupciones.</p>
-</div>
-<div class="item-servicio">
-<span class="icono-servicio">❄️</span>
-<h4>Climatización Perfecta</h4>
-<p>Habitaciones equipadas con aire acondicionado moderno para un confort total tras un día de sol.</p>
-</div>
-<div class="item-servicio">
-<span class="icono-servicio">☕</span>
-<h4>Rincón del Café</h4>
-<p>Despierta con el aroma del auténtico café salvadoreño de estricta altura cada mañana.</p>
-</div>
-<div class="item-servicio">
-<span class="icono-servicio">🗺️</span>
-<h4>Asistencia Turística</h4>
-<p>Te conectamos con los mejores tours locales: Lago Suchitlán, cascadas y museos.</p>
-</div>
-</div>
-</div>
+        <div class="grid-servicios">
+            <div class="item-servicio">
+                <span class="icono-servicio">🌐</span>
+                <h4>Conexión de Alta Velocidad</h4>
+                <p>Wi-Fi gratuito en todas las áreas para que compartas tus momentos o trabajes sin interrupciones.</p>
+            </div>
+            <div class="item-servicio">
+                <span class="icono-servicio">❄️</span>
+                <h4>Climatización Perfecta</h4>
+                <p>Habitaciones equipadas con aire acondicionado moderno para un confort total tras un día de sol.</p>
+            </div>
+            <div class="item-servicio">
+                <span class="icono-servicio">☕</span>
+                <h4>Rincón del Café</h4>
+                <p>Despierta con el aroma del auténtico café salvadoreño de estricta altura cada mañana.</p>
+            </div>
+            <div class="item-servicio">
+                <span class="icono-servicio">🗺️</span>
+                <h4>Asistencia Turística</h4>
+                <p>Te conectamos con los mejores tours locales: Lago Suchitlán, cascadas y museos.</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="habitaciones">
-<div class="contenedor-interno">
-<div class="encabezado-seccion">
-<h2>Nuestras Habitaciones</h2>
-<div class="linea-decorativa"></div>
-<p>Espacios diseñados para el descanso absoluto, fusionando la arquitectura tradicional con comodidades modernas.</p>
-</div>
+    <div class="contenedor-interno">
+        <div class="encabezado-seccion">
+            <h2>Nuestras Habitaciones</h2>
+            <div class="linea-decorativa"></div>
+            <p>Espacios diseñados para el descanso absoluto, fusionando la arquitectura tradicional con comodidades modernas.</p>
+        </div>
 
-<div class="grid-habitaciones">
-<div class="tarjeta">
-<img src="imagenes/hab-trac1.jpg" id="img-hab1" class="img-principal" alt="Suite Tradicional">
-<div class="miniaturas">
-<img src="imagenes/hab-trac1.jpg" onclick="document.getElementById('img-hab1').src=this.src">
-<img src="imagenes/hab-trac2.jpg" onclick="document.getElementById('img-hab1').src=this.src">
-<img src="imagenes/hab-trac3.jpg" onclick="document.getElementById('img-hab1').src=this.src">
-</div>
-<div class="tarjeta-info">
-<h3>Suite Tradicional</h3>
-<p>Perfecta para el viajero solitario o parejas que disfrutan del clima natural. Equipada con ventilador de techo y baño privado.</p>
-<span class="precio">$24 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
-</div>
-</div>
+        <div class="grid-habitaciones">
+            <div class="tarjeta">
+                <div class="img-container-premium">
+                    <img src="imagenes/hab-trac1.jpg" id="img-hab1" class="img-principal" alt="Suite Tradicional">
+                </div>
+                <div class="miniaturas" data-target="img-hab1">
+                    <img src="imagenes/hab-trac1.jpg" class="active">
+                    <img src="imagenes/hab-trac2.jpg">
+                    <img src="imagenes/hab-trac3.jpg">
+                </div>
+                <div class="tarjeta-info">
+                    <div>
+                        <h3>Suite Tradicional</h3>
+                        <p>Perfecta para el viajero solitario o parejas que disfrutan del clima natural. Equipada con ventilador de techo y baño privado.</p>
+                    </div>
+                    <div style="width: 100%;">
+                        <span class="precio">$24 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
+                        <button type="button" class="btn-secundario" onclick="prepararReserva('Suite Tradicional (Sin A/C) - $24')">Elegir esta Suite</button>
+                    </div>
+                </div>
+            </div>
 
-<div class="tarjeta">
-<img src="imagenes/hab-traAC1.jpg" id="img-hab2" class="img-principal" alt="Suite Tradicional AC">
-<div class="miniaturas">
-<img src="imagenes/hab-traAC1.jpg" onclick="document.getElementById('img-hab2').src=this.src">
-<img src="imagenes/hab-traAC2.jpg" onclick="document.getElementById('img-hab2').src=this.src">
-<img src="imagenes/hab-traAC3.jpg" onclick="document.getElementById('img-hab2').src=this.src">
-</div>
-<div class="tarjeta-info">
-<h3>Suite Tradicional con A/C</h3>
-<p>El balance ideal entre la arquitectura colonial y la frescura moderna. Habitación matrimonial equipada con aire acondicionado silencioso y baño privado.</p>
-<span class="precio">$35 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
-</div>
-</div>
+            <div class="tarjeta">
+                <div class="img-container-premium">
+                    <img src="imagenes/hab-traAC1.jpg" id="img-hab2" class="img-principal" alt="Suite Tradicional AC">
+                </div>
+                <div class="miniaturas" data-target="img-hab2">
+                    <img src="imagenes/hab-traAC1.jpg" class="active">
+                    <img src="imagenes/hab-traAC2.jpg">
+                    <img src="imagenes/hab-traAC3.jpg">
+                </div>
+                <div class="tarjeta-info">
+                    <div>
+                        <h3>Suite Tradicional con A/C</h3>
+                        <p>El balance ideal entre la arquitectura colonial y la frescura moderna. Habitación matrimonial equipada con aire acondicionado silencioso y baño privado.</p>
+                    </div>
+                    <div style="width: 100%;">
+                        <span class="precio">$35 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
+                        <button type="button" class="btn-secundario" onclick="prepararReserva('Suite Tradicional con A/C - $35')">Elegir esta Suite</button>
+                    </div>
+                </div>
+            </div>
 
-<div class="tarjeta">
-<img src="imagenes/hab-doble1.jpg" id="img-hab3" class="img-principal" alt="Master Familiar">
-<div class="miniaturas">
-<img src="imagenes/hab-doble1.jpg" onclick="document.getElementById('img-hab3').src=this.src">
-<img src="imagenes/hab-doble2.jpg" onclick="document.getElementById('img-hab3').src=this.src">
-<img src="imagenes/hab-doble3.jpg" onclick="document.getElementById('img-hab3').src=this.src">
-</div>
-<div class="tarjeta-info">
-<h3>Master Familiar (A/C)</h3>
-<p>Ideal para grupos o familias. Dos camas matrimoniales en un entorno espacioso, con amenidades exclusivas.</p>
-<span class="precio">$55 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
-</div>
-</div>
-</div>
-</div>
+            <div class="tarjeta">
+                <div class="img-container-premium">
+                    <img src="imagenes/hab-doble1.jpg" id="img-hab3" class="img-principal" alt="Master Familiar">
+                </div>
+                <div class="miniaturas" data-target="img-hab3">
+                    <img src="imagenes/hab-doble1.jpg" class="active">
+                    <img src="imagenes/hab-doble2.jpg">
+                    <img src="imagenes/hab-doble3.jpg">
+                </div>
+                <div class="tarjeta-info">
+                    <div>
+                        <h3>Master Familiar (A/C)</h3>
+                        <p>Ideal para grupos o familias. Dos camas matrimoniales en un entorno espacioso, con amenidades exclusivas.</p>
+                    </div>
+                    <div style="width: 100%;">
+                        <span class="precio">$55 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
+                        <button type="button" class="btn-secundario" onclick="prepararReserva('Master Familiar con A/C - $55')">Elegir esta Suite</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="recuerdos">
-<div class="contenedor-interno">
-<div class="encabezado-seccion">
-<h2>Experiencias Memorables</h2>
-<div class="linea-decorativa"></div>
-<p>Las historias de quienes ya forman parte de la familia El Amate.</p>
-</div>
+    <div class="contenedor-interno">
+        <div class="encabezado-seccion">
+            <h2>Experiencias Memorables</h2>
+            <div class="linea-decorativa"></div>
+            <p>Reseñas verificadas de huéspedes reales recopiladas de nuestros perfiles en línea.</p>
+        </div>
 
-<div class="grid-recuerdos">
-<div class="tarjeta-recuerdo">
-<img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=600" class="img-recuerdo" alt="Huéspedes">
-<div class="estrellas">★★★★★</div>
-<p class="texto-recuerdo">"La atención al detalle es increíble. El lugar es sumamente pacífico, limpio y el trato de todo el personal fue excepcional. Superó las expectativas."</p>
-<p class="autor-recuerdo">Familia Gómez, México</p>
-</div>
+        <div class="carousel-viewport">
+            <div class="track-recuerdos" id="trackRecuerdos">
+                <div class="tarjeta-recuerdo">
+                    <a href="https://maps.app.goo.gl/79jMTrc7LrEhPUqe7?g_st=ac" target="_blank" rel="noopener noreferrer" class="google-badge" aria-label="Ver reseña en Google Maps"><i class="fa-brands fa-google"></i> Maps</a>
+                    <div class="estrellas">★★★★★</div>
+                    <p class="texto-recuerdo">"Eduardo y su familia son increíbles. Nos hicieron sentir como en casa. Fue amable y atento en todo momento; disfrutamos enormemente de sus recomendaciones. El cuarto tenía todo lo necesario y estaba impecable."</p>
+                    <p class="autor-recuerdo">Azul</p>
+                </div>
 
-<div class="tarjeta-recuerdo">
-<img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=600" class="img-recuerdo" alt="Huéspedes">
-<div class="estrellas">★★★★★</div>
-<p class="texto-recuerdo">"Un verdadero oasis. Después de caminar bajo el sol, llegar a la habitación con aire acondicionado fue lo mejor. Sin duda volveremos el próximo año."</p>
-<p class="autor-recuerdo">Sarah & John, Canadá</p>
-</div>
-</div>
-</div>
+                <div class="tarjeta-recuerdo">
+                    <a href="https://maps.app.goo.gl/79jMTrc7LrEhPUqe7?g_st=ac" target="_blank" rel="noopener noreferrer" class="google-badge" aria-label="Ver reseña en Google Maps"><i class="fa-brands fa-google"></i> Maps</a>
+                    <div class="estrellas">★★★★★</div>
+                    <p class="texto-recuerdo">"¡Disfrutamos mucho de nuestra estancia! Teníamos todo a poca distancia, la cama era cómoda y había suficiente espacio. El edificio es agradable, ¡especialmente el jardín que es muy hermoso!"</p>
+                    <p class="autor-recuerdo">Caroline</p>
+                </div>
+
+                <div class="tarjeta-recuerdo">
+                    <a href="https://maps.app.goo.gl/79jMTrc7LrEhPUqe7?g_st=ac" target="_blank" rel="noopener noreferrer" class="google-badge" aria-label="Ver reseña en Google Maps"><i class="fa-brands fa-google"></i> Maps</a>
+                    <div class="estrellas">★★★★★</div>
+                    <p class="texto-recuerdo">"Habitación cómoda y limpia. El hostal está muy bien ubicado, a pocos pasos del centro histórico y el personal es muy agradable."</p>
+                    <p class="autor-recuerdo">Marianela</p>
+                </div>
+
+                <div class="tarjeta-recuerdo">
+                    <a href="https://maps.app.goo.gl/79jMTrc7LrEhPUqe7?g_st=ac" target="_blank" rel="noopener noreferrer" class="google-badge" aria-label="Ver reseña en Google Maps"><i class="fa-brands fa-google"></i> Maps</a>
+                    <div class="estrellas">★★★★★</div>
+                    <p class="texto-recuerdo">"¡Queda en un lugar cerca de las mejores atracciones turísticas de Suchitoto! Muy limpia, cómoda y amplia habitación. Anfitrión muy amable."</p>
+                    <p class="autor-recuerdo">Angel</p>
+                </div>
+
+                <div class="tarjeta-recuerdo">
+                    <a href="https://maps.app.goo.gl/79jMTrc7LrEhPUqe7?g_st=ac" target="_blank" rel="noopener noreferrer" class="google-badge" aria-label="Ver reseña en Google Maps"><i class="fa-brands fa-google"></i> Maps</a>
+                    <div class="estrellas">★★★★★</div>
+                    <p class="texto-recuerdo">"This is a wonderful hostal. Well located close to the central square. The facilities were cleaned regularly, and the staff were very helpful. This is more of a guest house than a hostel."</p>
+                    <p class="autor-recuerdo">Mark</p>
+                </div>
+
+                <div class="tarjeta-recuerdo">
+                    <a href="https://maps.app.goo.gl/79jMTrc7LrEhPUqe7?g_st=ac" target="_blank" rel="noopener noreferrer" class="google-badge" aria-label="Ver reseña en Google Maps"><i class="fa-brands fa-google"></i> Maps</a>
+                    <div class="estrellas">★★★★★</div>
+                    <p class="texto-recuerdo">"Good location, comfort, good shower pressure, staff super friendly and helpful, very nice stay for a few days."</p>
+                    <p class="autor-recuerdo">Isabela</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controles">
+            <button class="btn-control-carousel" id="btnPrevRecuerdo" aria-label="Anterior reseña"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="btn-control-carousel" id="btnNextRecuerdo" aria-label="Siguiente reseña"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<section id="galeria-momentos">
+    <div class="contenedor-interno">
+        <div class="encabezado-seccion">
+            <h2>Momentos Inolvidables</h2>
+            <div class="linea-decorativa"></div>
+            <p>Una colección de sonrisas, paisajes y vivencias compartidas con nuestros huéspedes en Hostal El Amate.</p>
+        </div>
+
+        <div class="grid-galeria">
+            <div class="item-galeria">
+                <img src="imagenes/momentos-h1.jpg" class="img-galeria ampliable-zoom" alt="Momento en Hostal El Amate 1">
+            </div>
+            <div class="item-galeria destacado-alto">
+                <img src="imagenes/momentos-h2.jpg" class="img-galeria ampliable-zoom" alt="Momento en Hostal El Amate 2">
+            </div>
+            <div class="item-galeria destacado-ancho">
+                <img src="imagenes/momentos-h3.jpg" class="img-galeria ampliable-zoom" alt="Momento en Hostal El Amate 3">
+            </div>
+            <div class="item-galeria">
+                <img src="imagenes/momentos-h4.jpg" class="img-galeria ampliable-zoom" alt="Momento en Hostal El Amate 4">
+            </div>
+            <div class="item-galeria">
+                <img src="imagenes/momentos-h5.jpg" class="img-galeria ampliable-zoom" alt="Momento en Hostal El Amate 5">
+            </div>
+            <div class="item-galeria destacado-alto">
+                <img src="imagenes/momentos-h6.jpg" class="img-galeria ampliable-zoom" alt="Momento en Hostal El Amate 6">
+            </div>
+            <div class="item-galeria">
+                <img src="imagenes/momentos-h7.jpg" class="img-galeria ampliable-zoom" alt="Momento en Hostal El Amate 7">
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="reservas">
-<div class="contenedor-interno">
-<div class="encabezado-seccion">
-<h2>Reserve su Estancia</h2>
-<div class="linea-decorativa"></div>
-<p>Complete el formulario y confirmaremos su reserva en minutos.</p>
-</div>
+    <div class="contenedor-interno">
+        <div class="encabezado-seccion">
+            <h2>Reserve su Estancia</h2>
+            <div class="linea-decorativa"></div>
+            <p>Complete el formulario y confirmaremos su reserva en minutos.</p>
+        </div>
 
-<div class="contacto-contenedor">
-<form id="formReserva">
-<div class="form-grupo">
-<label for="nombre">Nombre del Titular</label>
-<input type="text" id="nombre" required placeholder="Ingrese su nombre completo">
-</div>
-<div class="form-grupo">
-<label for="tipo">Preferencia de Suite</label>
-<select id="tipo" required>
-<option value="" disabled selected>Seleccione la categoría deseada...</option>
-<option value="Suite Tradicional (Sin A/C)">Suite Tradicional (Sin A/C) - $24</option>
-<option value="Suite Tradicional con A/C">Suite Tradicional con A/C - $35</option>
-<option value="Master Familiar con A/C">Master Familiar con A/C - $55</option>
-</select>
-</div>
-<div style="display: flex; gap: 20px;">
-<div class="form-grupo" style="flex: 1;">
-<label for="fecha-in">Check-in</label>
-<input type="date" id="fecha-in" required>
-</div>
-<div class="form-grupo" style="flex: 1;">
-<label for="fecha-out">Check-out</label>
-<input type="date" id="fecha-out" required>
-</div>
-</div>
-<button type="submit" class="btn-enviar">Consultar Disponibilidad</button>
-</form>
-</div>
-</div>
+        <div class="contacto-contenedor" id="formulario-caja">
+            <form id="formReserva">
+                <div class="form-grupo">
+                    <label for="nombre">Nombre del Titular</label>
+                    <input type="text" id="nombre" required placeholder="Ingrese su nombre completo">
+                </div>
+                <div class="form-grupo">
+                    <label for="tipo">Preferencia de Suite</label>
+                    <select id="tipo" required>
+                        <option value="" disabled selected>Seleccione la categoría deseada...</option>
+                        <option value="Suite Tradicional (Sin A/C) - $24" data-precio="24">Suite Tradicional (Sin A/C) - $24</option>
+                        <option value="Suite Tradicional con A/C - $35" data-precio="35">Suite Tradicional con A/C - $35</option>
+                        <option value="Master Familiar con A/C - $55" data-precio="55">Master Familiar con A/C - $55</option>
+                    </select>
+                </div>
+                
+                <div style="display: flex; gap: 20px;">
+                    <div class="form-grupo" style="flex: 1;">
+                        <label for="fecha-in">Check-in</label>
+                        <input type="date" id="fecha-in" required>
+                    </div>
+                    <div class="form-grupo" style="flex: 1;">
+                        <label for="fecha-out">Check-out</label>
+                        <input type="date" id="fecha-out" required>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 20px;">
+                    <div class="form-grupo" style="flex: 1;">
+                        <label for="adultos"><i class="fa-solid fa-user-tie"></i> Adultos</label>
+                        <input type="number" id="adultos" min="1" max="10" value="1" required>
+                    </div>
+                    <div class="form-grupo" style="flex: 1;">
+                        <label for="ninos"><i class="fa-solid fa-child"></i> Niños <span style="font-size: 0.75rem; text-transform: none; color: var(--texto-suave);">(2-12 años)</span></label>
+                        <input type="number" id="ninos" min="0" max="10" value="0" required>
+                    </div>
+                </div>
+
+                <div class="live-calculadora-box" id="calcBox">
+                    <h4><i class="fa-solid fa-calculator"></i> Cotización Estimada</h4>
+                    <p id="calcNoches">Estancia: -- noches</p>
+                    <p id="calcPrecio">Tarifa base por noche: $0</p>
+                    <p style="font-weight: 700; margin-top: 5px;" id="calcTotal">Total Estimado: $0 USD</p>
+                </div>
+
+                <div class="form-grupo">
+                    <label for="comentario">Comentarios / Peticiones Especiales</label>
+                    <textarea id="comentario" placeholder="Ej: Hora aproximada de llegada, requerimientos de accesibilidad, detalles adicionales..."></textarea>
+                </div>
+
+                <div class="botones-envio">
+                    <button type="button" class="btn-enviar wa" onclick="procesarReserva('whatsapp')">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Solicitud vía WhatsApp
+                    </button>
+                    <button type="button" class="btn-enviar correo" onclick="procesarReserva('correo')">
+                        <i class="fa-regular fa-envelope" style="font-size: 1.2rem;"></i> Solicitud vía Correo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </section>
 
 <footer>
-<div class="footer-grid">
-<div class="footer-col">
-<h4>Hostal El Amate</h4>
-<p>El refugio perfecto para descubrir el encanto histórico y natural de El Salvador.</p>
-</div>
-<div class="footer-col">
-<h4>Contacto</h4>
-<a href="https://maps.app.goo.gl/QaVxxS9nonPMJqGz5?g_st=aw" target="_blank" rel="noopener noreferrer">
-<i class="fa-solid fa-location-dot"></i> Suchitoto, Cuscatlán, El Salvador
-</a>
-<a href="https://wa.me/50376209889" target="_blank"><i class="fa-brands fa-whatsapp"></i> +503 7620-9889</a>
-<a href="mailto:Hostalelamate@gmail.com"><i class="fa-regular fa-envelope"></i> Hostalelamate@gmail.com</a>
-</div>
-<div class="footer-col">
-<h4>Síguenos</h4>
-<p>Únete a nuestra comunidad y descubre más de Suchitoto.</p>
-<div class="redes-sociales-container">
-<a href="https://www.instagram.com/hostal_el_amate.sv?igsh=MnNhbzhrdWRqb2g%3D&utm_source=qr" target="_blank" class="icono-social" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-<a href="https://www.facebook.com/share/1EjnATnL9G/" target="_blank" class="icono-social" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-<a href="https://www.tiktok.com/@hostal.el.amate" target="_blank" class="icono-social" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-</div>
-</div>
-</div>
-<div class="copyright">
-<p>© 2026 Hostal El Amate. Todos los derechos reservados.</p>
-</div>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Hostal El Amate</h4>
+            <p>El refugio perfecto para descubrir el encanto histórico y natural de El Salvador.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contacto</h4>
+            <a href="Https://maps.app.goo.gl/Vo77UrT4Pir2siFT7" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-location-dot"></i> Suchitoto, Cuscatlán, El Salvador
+            </a>
+            <a href="https://wa.me/50376209889" target="_blank"><i class="fa-brands fa-whatsapp"></i> +503 7620-9889</a>
+            <a href="mailto:Hostalelamate@gmail.com"><i class="fa-regular fa-envelope"></i> Hostalelamate@gmail.com</a>
+        </div>
+        <div class="footer-col">
+            <h4>Síguenos</h4>
+            <p>Únete a nuestra comunidad y descubre más de Suchitoto.</p>
+            <div class="redes-sociales-container">
+                <a href="https://www.instagram.com/hostal_el_amate.sv" target="_blank" class="icono-social" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1EjnATnL9G/" target="_blank" class="icono-social" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@hostal.el.amate" target="_blank" class="icono-social" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2026 Hostal El Amate. Todos los derechos reservados.</p>
+    </div>
 </footer>
 
 <a href="https://wa.me/50376209889" class="btn-whatsapp-flotante" target="_blank" title="Chatea con nosotros">
-<i class="fa-brands fa-whatsapp"></i>
+    <i class="fa-brands fa-whatsapp"></i>
 </a>
 
 <script>
-// Menú Hamburguesa
-const botonMenu = document.getElementById('link-menu');
-const menuNavegacion = document.getElementById('menu-navegacion');
-const enlacesMenu = document.querySelectorAll('#menu-navegacion a');
+    // --- 1. LÓGICA DE LETRAS DINÁMICAS ---
+    const palabras = ["Colonial", "Auténtico", "Natural", "Inolvidable"];
+    const contenedorTexto = document.getElementById("texto-dinamico");
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
-botonMenu.addEventListener('click', () => {
-botonMenu.classList.toggle('abierto');
-menuNavegacion.classList.toggle('activo');
-});
+    async function ejecutarTypewriter() {
+        let i = 0;
+        while (true) {
+            let palabraActual = palabras[i];
+            for (let j = 0; j <= palabraActual.length; j++) {
+                contenedorTexto.innerText = palabraActual.substring(0, j);
+                await delay(120); 
+            }
+            await delay(2000); 
+            for (let j = palabraActual.length; j >= 0; j--) {
+                contenedorTexto.innerText = palabraActual.substring(0, j);
+                await delay(60); 
+            }
+            await delay(400); 
+            i = (i + 1) % palabras.length;
+        }
+    }
+    window.addEventListener("DOMContentLoaded", ejecutarTypewriter);
 
-enlacesMenu.forEach(enlace => {
-enlace.addEventListener('click', () => {
-botonMenu.classList.remove('abierto');
-menuNavegacion.classList.remove('activo');
-});
-});
+    // --- SLIDER KEN BURNS ---
+    const slides = document.querySelectorAll('.slide');
+    let slideActual = 0;
+    const tiempoEntreSlides = 6000; 
 
-// Filosofía Toggle 
-const btnToggleFilosofia = document.getElementById('btn-toggle-filosofia');
-const contenedorFilosofia = document.getElementById('contenedor-filosofia');
+    function cambiarSlide() {
+        slides[slideActual].classList.remove('active');
+        slideActual = (slideActual + 1) % slides.length;
+        slides[slideActual].classList.add('active');
+    }
+    if (slides.length > 1) { setInterval(cambiarSlide, tiempoEntreSlides); }
 
-btnToggleFilosofia.addEventListener('click', () => {
-btnToggleFilosofia.classList.toggle('abierto');
-contenedorFilosofia.classList.toggle('abierto');
+    // --- 2. SCROLL TYPEWRITER (TITULOS) ---
+    const titulosPrincipales = document.querySelectorAll('.encabezado-seccion h2');
+    titulosPrincipales.forEach(titulo => {
+        titulo.setAttribute('data-texto', titulo.innerText);
+        titulo.innerHTML = ' '; 
+    });
 
-if(btnToggleFilosofia.classList.contains('abierto')) {
-btnToggleFilosofia.innerHTML = `<div class="icono-rayitas"><span></span><span></span><span></span></div> Ocultar Filosofía`;
-} else {
-btnToggleFilosofia.innerHTML = `<div class="icono-rayitas"><span></span><span></span><span></span></div> Conoce Nuestra Filosofía`;
-}
-});
+    async function animarTitulo(elemento, texto) {
+        elemento.innerHTML = ' ';
+        await delay(300); 
+        for (let i = 0; i <= texto.length; i++) {
+            let cursor = i < texto.length ? '<span style="opacity: 0.5; font-weight: 300;">|</span>' : '';
+            elemento.innerHTML = texto.substring(0, i) + cursor;
+            await delay(75); 
+        }
+    }
 
-// Envío de Formulario (Correo + WhatsApp simultáneo con texto formal de alto nivel)
-document.getElementById('formReserva').addEventListener('submit', function(e) {
-e.preventDefault();
-const nombre = document.getElementById('nombre').value;
-const tipo = document.getElementById('tipo').value;
-const fechaIn = document.getElementById('fecha-in').value;
-const fechaOut = document.getElementById('fecha-out').value;
+    const observerTitulos = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const titulo = entry.target;
+                animarTitulo(titulo, titulo.getAttribute('data-texto'));
+                observer.unobserve(titulo);
+            }
+        });
+    }, { threshold: 0.5 }); 
+    
+    titulosPrincipales.forEach(titulo => observerTitulos.observe(titulo));
 
-const numeroWhatsApp = "50376209889";
-const correoDestino = "Hostalelamate@gmail.com";
+    // --- 3. LÓGICA DE VALIDACIÓN Y CÁLCULO ---
+    const fIn = document.getElementById('fecha-in');
+    const fOut = document.getElementById('fecha-out');
+    const selectTipo = document.getElementById('tipo');
+    const calcBox = document.getElementById('calcBox');
 
-// 1. Mensaje Profesional para WhatsApp
-const mensajeWA = `Estimado equipo de Hostal El Amate,\n\nMe dirijo a ustedes con el propósito de solicitar información sobre la disponibilidad de hospedaje. A continuación, detallo los datos de mi posible reserva:\n\n👤 Titular de la reserva: ${nombre}\n🛏️ Categoría de Suite: ${tipo}\n📥 Fecha de Check-in: ${fechaIn}\n📤 Fecha de Check-out: ${fechaOut}\n\nAgradezco de antemano su pronta respuesta y confirmación.\n\nAtentamente,\n${nombre}`;
+    const hoy = new Date().toISOString().split('T')[0];
+    fIn.min = hoy;
 
-// 2. Mensaje Formal para el Correo Electrónico
-const mensajeCorreo = `Estimado equipo de reservaciones,\n\nPor medio de la presente, solicito formalmente la verificación de disponibilidad para una estadía en su distinguido hostal. A continuación, presento los detalles del requerimiento:\n\n- Nombre del Titular: ${nombre}\n- Tipo de Habitación: ${tipo}\n- Fecha de Ingreso (Check-in): ${fechaIn}\n- Fecha de Salida (Check-out): ${fechaOut}\n\nQuedo a la espera de su amable confirmación y las instrucciones correspondientes para formalizar la reserva.\n\nCordialmente,\n${nombre}`;
+    fIn.addEventListener('change', () => {
+        if(fIn.value) {
+            const manana = new Date(fIn.value);
+            manana.setDate(manana.getDate() + 1);
+            fOut.min = manana.toISOString().split('T')[0];
+            if(fOut.value && fOut.value <= fIn.value) { fOut.value = manana.toISOString().split('T')[0]; }
+        }
+        calcularLiveTotal();
+    });
 
-// Generación segura de los enlaces 
-const urlCorreo = `mailto:${correoDestino}?subject=Solicitud de Reserva - ${nombre}&body=${encodeURIComponent(mensajeCorreo)}`;
-const urlWA = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeWA)}`;
+    fOut.addEventListener('change', calcularLiveTotal);
+    selectTipo.addEventListener('change', calcularLiveTotal);
 
-// Acción A: Abrir el cliente de correo por defecto
-window.location.href = urlCorreo;
+    function calcularLiveTotal() {
+        if (!fIn.value || !fOut.value || !selectTipo.value) {
+            calcBox.style.display = 'none';
+            return;
+        }
+        const checkInDate = new Date(fIn.value);
+        const checkOutDate = new Date(fOut.value);
+        const diffTime = Math.abs(checkOutDate - checkInDate);
+        const noches = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-// Acción B: Abrir WhatsApp con un ligero retraso de 1 segundo para asegurar que el correo inicie sin interrumpirse
-setTimeout(() => {
-window.open(urlWA, '_blank');
-}, 1000); 
+        const opcionSeleccionada = selectTipo.options[selectTipo.selectedIndex];
+        const precioNoche = parseInt(opcionSeleccionada.dataset.precio) || 0;
+        const total = noches * precioNoche;
 
-// Limpiar el formulario y dar una breve confirmación al usuario
-alert("Redirigiendo a su correo y WhatsApp para completar la solicitud de reserva...");
-this.reset();
-});
+        if (noches > 0 && precioNoche > 0) {
+            document.getElementById('calcNoches').innerText = `Estancia: ${noches} ${noches === 1 ? 'noche' : 'noches'}`;
+            document.getElementById('calcPrecio').innerText = `Tarifa base por noche: $${precioNoche} USD`;
+            document.getElementById('calcTotal').innerText = `Total Estimado: $${total} USD`;
+            calcBox.style.display = 'block';
+        } else {
+            calcBox.style.display = 'none';
+        }
+    }
 
-// Modal de Imágenes
-const modal = document.getElementById("modalImagen");
-const imgModal = document.getElementById("imgAmpliacion");
-const btnCerrar = document.getElementById("btnCerrar");
-const fotosAmpliables = document.querySelectorAll('.img-principal, .img-recuerdo, .ampliable-zoom');
+    function prepararReserva(opcionSuite) {
+        selectTipo.value = opcionSuite;
+        document.getElementById('reservas').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            selectTipo.style.backgroundColor = "var(--crema-oscuro)";
+            selectTipo.style.borderColor = "var(--dorado-suave)";
+            setTimeout(() => {
+                selectTipo.style.backgroundColor = "var(--blanco-puro)";
+                selectTipo.style.borderColor = "var(--verde-logo)";
+            }, 1500);
+            document.getElementById('nombre').focus();
+            calcularLiveTotal();
+        }, 600);
+    }
 
-fotosAmpliables.forEach(foto => {
-foto.addEventListener('click', function() {
-modal.style.display = "block";
-imgModal.src = this.src;
-if (this.classList.contains('ampliable-zoom')) {
-imgModal.style.mixBlendMode = 'normal';
-imgModal.style.borderRadius = '8px';
-imgModal.style.backgroundColor = 'white'; 
-} else {
-imgModal.style.mixBlendMode = 'normal';
-imgModal.style.borderRadius = '4px';
-}
-});
-});
+    // --- 4. TRANSICIONES DE MINIATURAS ---
+    document.querySelectorAll('.miniaturas').forEach(contenedor => {
+        const targetId = contenedor.getAttribute('data-target');
+        const imgPrincipal = document.getElementById(targetId);
+        const imagenes = contenedor.querySelectorAll('img');
 
-btnCerrar.onclick = () => modal.style.display = "none";
-window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
+        imagenes.forEach(img => {
+            img.addEventListener('click', function() {
+                imagenes.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                imgPrincipal.style.opacity = '0.3';
+                setTimeout(() => {
+                    imgPrincipal.src = this.src;
+                    imgPrincipal.style.opacity = '1';
+                }, 150);
+            });
+        });
+    });
+
+    // --- 5. INTERSECTION OBSERVER ANIMACIONES ---
+    const opcionesReveal = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, opcionesReveal);
+
+    document.querySelectorAll('section, .tarjeta, .item-servicio, .tarjeta-recuerdo, .contacto-contenedor, .item-galeria').forEach(elemento => {
+        elemento.classList.add('reveal');
+        revealObserver.observe(elemento);
+    });
+
+    // --- 6. SCROLL-SPY Y MENÚ ---
+    const opcionesMenuSpy = { rootMargin: "-30% 0px -60% 0px" };
+    const menuObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const idSeccion = entry.target.getAttribute('id');
+                document.querySelectorAll('#menu-navegacion a').forEach(enlace => {
+                    enlace.classList.toggle('active', enlace.getAttribute('href') === `#${idSeccion}`);
+                });
+            }
+        });
+    }, opcionesMenuSpy);
+    document.querySelectorAll('section').forEach(seccion => menuObserver.observe(seccion));
+
+    const botonMenu = document.getElementById('link-menu');
+    const menuNavegacion = document.getElementById('menu-navegacion');
+
+    botonMenu.addEventListener('click', () => {
+        botonMenu.classList.toggle('abierto');
+        menuNavegacion.classList.toggle('activo');
+    });
+
+    document.querySelectorAll('#menu-navegacion a').forEach(enlace => {
+        enlace.addEventListener('click', () => {
+            botonMenu.classList.remove('abierto');
+            menuNavegacion.classList.remove('activo');
+        });
+    });
+
+    const btnToggleFilosofia = document.getElementById('btn-toggle-filosofia');
+    const contenedorFilosofia = document.getElementById('contenedor-filosofia');
+
+    btnToggleFilosofia.addEventListener('click', () => {
+        const abriendo = btnToggleFilosofia.classList.toggle('abierto');
+        contenedorFilosofia.classList.toggle('abierto');
+        btnToggleFilosofia.innerHTML = abriendo 
+            ? `<div class="icono-rayitas"><span></span><span></span><span></span></div> Ocultar Filosofía`
+            : `<div class="icono-rayitas"><span></span><span></span><span></span></div> Conoce Nuestra Filosofía`;
+    });
+
+    // --- 7. PROCESAMIENTO DE RESERVAS ---
+    function procesarReserva(canalEnvio) {
+        const form = document.getElementById('formReserva');
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        const nombre = document.getElementById('nombre').value;
+        const tipo = document.getElementById('tipo').value;
+        const fechaIn = document.getElementById('fecha-in').value;
+        const fechaOut = document.getElementById('fecha-out').value;
+        const adultos = document.getElementById('adultos').value;
+        const ninos = document.getElementById('ninos').value;
+        const comentario = document.getElementById('comentario').value;
+
+        const noches = Math.ceil(Math.abs(new Date(fechaOut) - new Date(fechaIn)) / (1000 * 60 * 60 * 24));
+        const opcionSeleccionada = selectTipo.options[selectTipo.selectedIndex];
+        const precioNoche = parseInt(opcionSeleccionada.dataset.precio) || 0;
+        const totalCalculado = noches * precioNoche;
+
+        const numeroWhatsApp = "50376209889";
+        const correoDestino = "Hostalelamate@gmail.com";
+
+        let mensajeComun = `Estimado equipo de Hostal El Amate,\n\nMe dirijo a ustedes para solicitar información de reserva:\n\n👤 Titular: ${nombre}\n🛏️ Suite: ${tipo}\n📥 Check-in: ${fechaIn}\n📤 Check-out: ${fechaOut}\n🌙 Estancia: ${noches} ${noches === 1 ? 'noche' : 'noches'}\n👥 Huéspedes: ${adultos} ${adultos == 1 ? 'Adulto' : 'Adultos'}${parseInt(ninos) > 0 ? ` y ${ninos} ${ninos == 1 ? 'Niño' : 'Niños'}` : ''}\n💰 Presupuesto estimado: $${totalCalculado} USD`;
+
+        if (comentario.trim() !== "") {
+            mensajeComun += `\n\n💬 Comentarios:\n"${comentario.trim()}"`;
+        }
+
+        mensajeComun += `\n\nAtentamente,\n${nombre}`;
+
+        if (canalEnvio === 'whatsapp') {
+            const urlWA = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeComun)}`;
+            window.open(urlWA, '_blank');
+        } else if (canalEnvio === 'correo') {
+            const urlCorreo = `mailto:${correoDestino}?subject=Solicitud de Reserva - ${encodeURIComponent(nombre)}&body=${encodeURIComponent(mensajeComun)}`;
+            window.location.href = urlCorreo;
+        }
+
+        form.reset();
+        document.getElementById('calcBox').style.display = 'none';
+    }
+
+    // --- 8. MODAL DE IMÁGENES ---
+    const modal = document.getElementById("modalImagen");
+    const imgModal = document.getElementById("imgAmpliacion");
+    const btnCerrar = document.getElementById("btnCerrar");
+
+    document.querySelectorAll('.img-principal, .img-recuerdo, .ampliable-zoom').forEach(foto => {
+        foto.addEventListener('click', function() {
+            modal.style.display = "block";
+            imgModal.src = this.src;
+            imgModal.style.mixBlendMode = 'normal';
+            imgModal.style.borderRadius = this.classList.contains('ampliable-zoom') ? '8px' : '4px';
+        });
+    });
+
+    btnCerrar.onclick = () => modal.style.display = "none";
+    window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
+
+    // --- 9. LÓGICA DEL CARRUSEL DINÁMICO DE GOOGLE MAPS ---
+    const track = document.getElementById('trackRecuerdos');
+    const btnPrev = document.getElementById('btnPrevRecuerdo');
+    const btnNext = document.getElementById('btnNextRecuerdo');
+    const tarjetas = document.querySelectorAll('.tarjeta-recuerdo');
+    
+    let indexRecuerdo = 0;
+    let autoPlayInterval;
+
+    function obtenerTarjetasVisibles() {
+        if (window.innerWidth <= 600) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+    }
+
+    function moverCarousel() {
+        const visibles = obtenerTarjetasVisibles();
+        const maxIndex = tarjetas.length - visibles;
+        
+        if (indexRecuerdo > maxIndex) {
+            indexRecuerdo = 0; 
+        } else if (indexRecuerdo < 0) {
+            indexRecuerdo = maxIndex; 
+        }
+
+        const tarjetaAncho = tarjetas[0].getBoundingClientRect().width;
+        const desplazamiento = indexRecuerdo * (tarjetaAncho + 30); // 30px es el gap configurado en CSS
+        track.style.transform = `translateX(-${desplazamiento}px)`;
+    }
+
+    function siguienteRecuerdo() {
+        indexRecuerdo++;
+        moverCarousel();
+    }
+
+    function anteriorRecuerdo() {
+        indexRecuerdo--;
+        moverCarousel();
+    }
+
+    btnNext.addEventListener('click', () => {
+        siguienteRecuerdo();
+        reiniciarAutoPlay();
+    });
+
+    btnPrev.addEventListener('click', () => {
+        anteriorRecuerdo();
+        reiniciarAutoPlay();
+    });
+
+    function iniciarAutoPlay() {
+        autoPlayInterval = setInterval(siguienteRecuerdo, 5000); 
+    }
+
+    function reiniciarAutoPlay() {
+        clearInterval(autoPlayInterval);
+        iniciarAutoPlay();
+    }
+
+    window.addEventListener('resize', moverCarousel);
+    iniciarAutoPlay();
 </script>
 </body>
 </html>
