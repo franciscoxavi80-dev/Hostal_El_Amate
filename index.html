@@ -181,9 +181,20 @@ section { padding: var(--espaciado-seccion); }
 .item-servicio:hover { transform: translateY(-5px); }
 .icono-servicio { font-size: 2.5rem; margin-bottom: 15px; display: block; }
 
-/* --- HABITACIONES --- */
-.grid-habitaciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.tarjeta { background: var(--fondo-crema); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.04); transition: all 0.3s; border: 1px solid var(--crema-oscuro); display: flex; flex-direction: column; }
+/* --- ESTRUCTURA GENERAL DE CARRUSELES (HABITACIONES Y RECUERDOS) --- */
+.carousel-viewport { overflow: hidden; width: 100%; padding: 10px 0; }
+.carousel-controles { display: flex; justify-content: center; gap: 15px; margin-top: 35px; }
+.btn-control-carousel { background: var(--fondo-crema); border: 1px solid var(--crema-oscuro); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--texto-oscuro); transition: all 0.3s ease; font-size: 1rem; }
+.btn-control-carousel:hover { background: var(--verde-logo); color: var(--blanco-puro); border-color: var(--verde-logo); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+/* --- HABITACIONES (CARRUSEL) --- */
+.track-habitaciones { display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); gap: 30px; will-change: transform; }
+.tarjeta { 
+    flex: 0 0 calc((100% - 60px) / 3); 
+    background: var(--fondo-crema); border-radius: 8px; overflow: hidden; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04); transition: all 0.3s; 
+    border: 1px solid var(--crema-oscuro); display: flex; flex-direction: column; 
+}
 .tarjeta:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.08); transform: translateY(-5px); }
 .img-container-premium { position: relative; overflow: hidden; height: 250px; background: #000; }
 .img-principal { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; transition: opacity 0.3s ease-in-out; }
@@ -201,7 +212,6 @@ section { padding: var(--espaciado-seccion); }
 
 /* --- DINÁMICO: RECUERDOS (CARRUSEL DE GOOGLE MAPS) --- */
 #recuerdos { background-color: var(--blanco-puro); position: relative; overflow: hidden; }
-.carousel-viewport { overflow: hidden; width: 100%; padding: 10px 0; }
 .track-recuerdos { display: flex; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); gap: 30px; will-change: transform; }
 .tarjeta-recuerdo { 
     flex: 0 0 calc((100% - 60px) / 3); 
@@ -229,20 +239,16 @@ section { padding: var(--espaciado-seccion); }
     background: rgba(66, 133, 244, 0.06);
     padding: 4px 10px;
     border-radius: 20px;
-    text-decoration: none; /* Añadido para que no tenga línea debajo */
-    transition: all 0.3s ease; /* Transición suave */
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 .google-badge:hover {
-    background: rgba(66, 133, 244, 0.15); /* Fondo más oscuro al pasar el ratón */
-    transform: scale(1.05); /* Pequeño efecto de zoom */
+    background: rgba(66, 133, 244, 0.15); 
+    transform: scale(1.05); 
 }
 .estrellas { color: var(--dorado-suave); margin-bottom: 15px; letter-spacing: 2px; }
-.texto-recuerdo { font-style: italic; color: var(--texto-suave); margin-bottom: 15px; font-size: 0.95rem; flex-grow: 1; margin-top: 15px; } /* Ajuste de margen por el botón absoluto */
+.texto-recuerdo { font-style: italic; color: var(--texto-suave); margin-bottom: 15px; font-size: 0.95rem; flex-grow: 1; margin-top: 15px; } 
 .autor-recuerdo { font-weight: 700; color: var(--texto-oscuro); }
-
-.carousel-controles { display: flex; justify-content: center; gap: 15px; margin-top: 35px; }
-.btn-control-carousel { background: var(--fondo-crema); border: 1px solid var(--crema-oscuro); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--texto-oscuro); transition: all 0.3s ease; font-size: 1rem; }
-.btn-control-carousel:hover { background: var(--verde-logo); color: var(--blanco-puro); border-color: var(--verde-logo); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
 /* --- GALERÍA COLLAGE --- */
 #galeria-momentos { background-color: var(--fondo-crema); }
@@ -289,16 +295,18 @@ footer { background-color: var(--texto-oscuro); color: var(--blanco-puro); paddi
 .cerrar-modal { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
 .cerrar-modal:hover { color: var(--dorado-suave); }
 
+/* --- RESPONSIVIDAD PARA CARRUSELES --- */
 @media (max-width: 900px) {
     section { padding: 60px 5%; }
     .grid-nosotros { grid-template-columns: 1fr; gap: 30px; }
     .hero-contenido h1 { font-size: 2.8rem; }
     .btn-whatsapp-flotante { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 30px; }
     .botones-envio { flex-direction: column; }
-    .tarjeta-recuerdo { flex: 0 0 calc((100% - 30px) / 2); }
+    
+    .tarjeta, .tarjeta-recuerdo { flex: 0 0 calc((100% - 30px) / 2); }
 }
 @media (max-width: 600px) {
-    .tarjeta-recuerdo { flex: 0 0 100%; }
+    .tarjeta, .tarjeta-recuerdo { flex: 0 0 100%; }
 }
 </style>
 </head>
@@ -432,6 +440,7 @@ footer { background-color: var(--texto-oscuro); color: var(--blanco-puro); paddi
     </div>
 </section>
 
+<!-- SECCIÓN DE HABITACIONES CON NUEVO CARRUSEL DINÁMICO -->
 <section id="habitaciones">
     <div class="contenedor-interno">
         <div class="encabezado-seccion">
@@ -440,70 +449,104 @@ footer { background-color: var(--texto-oscuro); color: var(--blanco-puro); paddi
             <p>Espacios diseñados para el descanso absoluto, fusionando la arquitectura tradicional con comodidades modernas.</p>
         </div>
 
-        <div class="grid-habitaciones">
-            <div class="tarjeta">
-                <div class="img-container-premium">
-                    <img src="imagenes/hab-trac1.jpg" id="img-hab1" class="img-principal" alt="Suite Tradicional">
-                </div>
-                <div class="miniaturas" data-target="img-hab1">
-                    <img src="imagenes/hab-trac1.jpg" class="active">
-                    <img src="imagenes/hab-trac2.jpg">
-                    <img src="imagenes/hab-trac3.jpg">
-                </div>
-                <div class="tarjeta-info">
-                    <div>
-                        <h3>Suite Tradicional</h3>
-                        <p>Perfecta para el viajero solitario o parejas que disfrutan del clima natural. Equipada con ventilador de techo y baño privado.</p>
+        <div class="carousel-viewport">
+            <div class="track-habitaciones" id="trackHabitaciones">
+                <!-- TARJETA 1 -->
+                <div class="tarjeta">
+                    <div class="img-container-premium">
+                        <img src="imagenes/hab-trac1.jpg" id="img-hab1" class="img-principal" alt="Habitación Tradicional">
                     </div>
-                    <div style="width: 100%;">
-                        <span class="precio">$24 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
-                        <button type="button" class="btn-secundario" onclick="prepararReserva('Suite Tradicional (Sin A/C) - $24')">Elegir esta Suite</button>
+                    <div class="miniaturas" data-target="img-hab1">
+                        <img src="imagenes/hab-trac1.jpg" class="active">
+                        <img src="imagenes/hab-trac2.jpg">
+                        <img src="imagenes/hab-trac3.jpg">
+                    </div>
+                    <div class="tarjeta-info">
+                        <div>
+                            <h3>Habitación Tradicional</h3>
+                            <p>Perfecta para el viajero solitario o parejas que buscan descanso. Equipada con una cómoda cama matrimonial, aire acondicionado moderno y <strong>baño privado</strong> para tu máximo confort.</p>
+                        </div>
+                        <div style="width: 100%;">
+                            <span class="precio">$35 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
+                            <button type="button" class="btn-secundario" onclick="prepararReserva('Habitación Tradicional - $35')">Elegir esta Habitación</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tarjeta">
-                <div class="img-container-premium">
-                    <img src="imagenes/hab-traAC1.jpg" id="img-hab2" class="img-principal" alt="Suite Tradicional AC">
-                </div>
-                <div class="miniaturas" data-target="img-hab2">
-                    <img src="imagenes/hab-traAC1.jpg" class="active">
-                    <img src="imagenes/hab-traAC2.jpg">
-                    <img src="imagenes/hab-traAC3.jpg">
-                </div>
-                <div class="tarjeta-info">
-                    <div>
-                        <h3>Suite Tradicional con A/C</h3>
-                        <p>El balance ideal entre la arquitectura colonial y la frescura moderna. Habitación matrimonial equipada con aire acondicionado silencioso y baño privado.</p>
+                <!-- TARJETA 2 -->
+                <div class="tarjeta">
+                    <div class="img-container-premium">
+                        <img src="imagenes/hab-traAC1.jpg" id="img-hab2" class="img-principal" alt="Habitación Tradicional">
                     </div>
-                    <div style="width: 100%;">
-                        <span class="precio">$35 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
-                        <button type="button" class="btn-secundario" onclick="prepararReserva('Suite Tradicional con A/C - $35')">Elegir esta Suite</button>
+                    <div class="miniaturas" data-target="img-hab2">
+                        <img src="imagenes/hab-traAC1.jpg" class="active">
+                        <img src="imagenes/hab-traAC2.jpg">
+                        <img src="imagenes/hab-traAC3.jpg">
+                    </div>
+                    <div class="tarjeta-info">
+                        <div>
+                            <h3>Habitación Tradicional</h3>
+                            <p>El balance ideal para relajarse en pareja o en solitario. Cuenta con una confortable cama matrimonial, aire acondicionado silencioso y <strong>baño privado</strong> para garantizar una estancia placentera.</p>
+                        </div>
+                        <div style="width: 100%;">
+                            <span class="precio">$35 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
+                            <button type="button" class="btn-secundario" onclick="prepararReserva('Habitación Tradicional - $35')">Elegir esta Habitación</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tarjeta">
-                <div class="img-container-premium">
-                    <img src="imagenes/hab-doble1.jpg" id="img-hab3" class="img-principal" alt="Master Familiar">
-                </div>
-                <div class="miniaturas" data-target="img-hab3">
-                    <img src="imagenes/hab-doble1.jpg" class="active">
-                    <img src="imagenes/hab-doble2.jpg">
-                    <img src="imagenes/hab-doble3.jpg">
-                </div>
-                <div class="tarjeta-info">
-                    <div>
-                        <h3>Master Familiar (A/C)</h3>
-                        <p>Ideal para grupos o familias. Dos camas matrimoniales en un entorno espacioso, con amenidades exclusivas.</p>
+                <!-- TARJETA 3 -->
+                <div class="tarjeta">
+                    <div class="img-container-premium">
+                        <img src="imagenes/placeholder-master1.jpg" id="img-hab3" class="img-principal" alt="Master Familiar">
                     </div>
-                    <div style="width: 100%;">
-                        <span class="precio">$55 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
-                        <button type="button" class="btn-secundario" onclick="prepararReserva('Master Familiar con A/C - $55')">Elegir esta Suite</button>
+                    <div class="miniaturas" data-target="img-hab3">
+                        <img src="imagenes/placeholder-master1.jpg" class="active">
+                        <img src="imagenes/placeholder-master2.jpg">
+                        <img src="imagenes/placeholder-master3.jpg">
+                    </div>
+                    <div class="tarjeta-info">
+                        <div>
+                            <h3>Master Familiar</h3>
+                            <p>Ideal para grupos o familias. Dos camas matrimoniales en un entorno espacioso, con amenidades exclusivas, aire acondicionado y <strong>baño privado</strong>.</p>
+                        </div>
+                        <div style="width: 100%;">
+                            <span class="precio">$55 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
+                            <button type="button" class="btn-secundario" onclick="prepararReserva('Master Familiar - $55')">Elegir esta Suite</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TARJETA 4 -->
+                <div class="tarjeta">
+                    <div class="img-container-premium">
+                        <img src="imagenes/hab-doble1.jpg" id="img-hab4" class="img-principal" alt="Ultra Familiar">
+                    </div>
+                    <div class="miniaturas" data-target="img-hab4">
+                        <img src="imagenes/hab-doble1.jpg" class="active">
+                        <img src="imagenes/hab-doble2.jpg">
+                        <img src="imagenes/hab-doble3.jpg">
+                    </div>
+                    <div class="tarjeta-info">
+                        <div>
+                            <h3>Ultra Familiar</h3>
+                            <p>Ideal para familias numerosas o grupos grandes. Tres camas matrimoniales en un entorno amplio, diseñado para el máximo descanso con aire acondicionado y <strong>baño privado</strong>.</p>
+                        </div>
+                        <div style="width: 100%;">
+                            <span class="precio">$75 <span style="font-size:0.9rem; color:var(--texto-suave); font-family:'Lato',sans-serif; font-weight:400;">/ noche</span></span>
+                            <button type="button" class="btn-secundario" onclick="prepararReserva('Ultra Familiar - $75')">Elegir esta Suite</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Controles del Carrusel de Habitaciones -->
+        <div class="carousel-controles">
+            <button class="btn-control-carousel" id="btnPrevHabitacion" aria-label="Anterior habitación"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="btn-control-carousel" id="btnNextHabitacion" aria-label="Siguiente habitación"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
     </div>
 </section>
 
@@ -620,9 +663,9 @@ footer { background-color: var(--texto-oscuro); color: var(--blanco-puro); paddi
                     <label for="tipo">Preferencia de Suite</label>
                     <select id="tipo" required>
                         <option value="" disabled selected>Seleccione la categoría deseada...</option>
-                        <option value="Suite Tradicional (Sin A/C) - $24" data-precio="24">Suite Tradicional (Sin A/C) - $24</option>
-                        <option value="Suite Tradicional con A/C - $35" data-precio="35">Suite Tradicional con A/C - $35</option>
-                        <option value="Master Familiar con A/C - $55" data-precio="55">Master Familiar con A/C - $55</option>
+                        <option value="Habitación Tradicional - $35" data-precio="35">Habitación Tradicional - $35</option>
+                        <option value="Master Familiar - $55" data-precio="55">Master Familiar - $55</option>
+                        <option value="Ultra Familiar - $75" data-precio="75">Ultra Familiar - $75</option>
                     </select>
                 </div>
                 
@@ -932,7 +975,7 @@ footer { background-color: var(--texto-oscuro); color: var(--blanco-puro); paddi
         const numeroWhatsApp = "50376209889";
         const correoDestino = "Hostalelamate@gmail.com";
 
-        let mensajeComun = `Estimado equipo de Hostal El Amate,\n\nMe dirijo a ustedes para solicitar información de reserva:\n\n👤 Titular: ${nombre}\n🛏️ Suite: ${tipo}\n📥 Check-in: ${fechaIn}\n📤 Check-out: ${fechaOut}\n🌙 Estancia: ${noches} ${noches === 1 ? 'noche' : 'noches'}\n👥 Huéspedes: ${adultos} ${adultos == 1 ? 'Adulto' : 'Adultos'}${parseInt(ninos) > 0 ? ` y ${ninos} ${ninos == 1 ? 'Niño' : 'Niños'}` : ''}\n💰 Presupuesto estimado: $${totalCalculado} USD`;
+        let mensajeComun = `Estimado equipo de Hostal El Amate,\n\nMe dirijo a ustedes para solicitar información de reserva:\n\n👤 Titular: ${nombre}\n🛏️ Suite: ${tipo}\n📥 Check-in: ${fechaIn}\n📤 Check-out: ${fechaOut}\n🌙 Estancia: ${noches} ${noches === 1 ? 'noche' : 'noches'}\n👥 Huéspedes: ${adultos} ${adultos == 1 ? 'Adulto' : 'Adultos'}${parseInt(ninos) > 0 ? ` y ${ninos}${ninos == 1 ? 'Niño' : 'Niños'}` : ''}\n💰 Presupuesto estimado: $${totalCalculado} USD`;
 
         if (comentario.trim() !== "") {
             mensajeComun += `\n\n💬 Comentarios:\n"${comentario.trim()}"`;
@@ -969,67 +1012,88 @@ footer { background-color: var(--texto-oscuro); color: var(--blanco-puro); paddi
     btnCerrar.onclick = () => modal.style.display = "none";
     window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; }
 
-    // --- 9. LÓGICA DEL CARRUSEL DINÁMICO DE GOOGLE MAPS ---
-    const track = document.getElementById('trackRecuerdos');
-    const btnPrev = document.getElementById('btnPrevRecuerdo');
-    const btnNext = document.getElementById('btnNextRecuerdo');
-    const tarjetas = document.querySelectorAll('.tarjeta-recuerdo');
-    
-    let indexRecuerdo = 0;
-    let autoPlayInterval;
-
+    // --- 9. FUNCIONES COMPARTIDAS DE CARRUSELES ---
     function obtenerTarjetasVisibles() {
         if (window.innerWidth <= 600) return 1;
         if (window.innerWidth <= 900) return 2;
         return 3;
     }
 
-    function moverCarousel() {
-        const visibles = obtenerTarjetasVisibles();
-        const maxIndex = tarjetas.length - visibles;
-        
-        if (indexRecuerdo > maxIndex) {
-            indexRecuerdo = 0; 
-        } else if (indexRecuerdo < 0) {
-            indexRecuerdo = maxIndex; 
-        }
+    // --- 10. LÓGICA DEL CARRUSEL DE RECUERDOS ---
+    const trackRecuerdos = document.getElementById('trackRecuerdos');
+    const btnPrevRecuerdo = document.getElementById('btnPrevRecuerdo');
+    const btnNextRecuerdo = document.getElementById('btnNextRecuerdo');
+    const tarjetasRecuerdo = document.querySelectorAll('.tarjeta-recuerdo');
+    
+    let indexRecuerdo = 0;
+    let autoPlayInterval;
 
-        const tarjetaAncho = tarjetas[0].getBoundingClientRect().width;
-        const desplazamiento = indexRecuerdo * (tarjetaAncho + 30); // 30px es el gap configurado en CSS
-        track.style.transform = `translateX(-${desplazamiento}px)`;
+    function moverCarouselRecuerdos() {
+        const visibles = obtenerTarjetasVisibles();
+        const maxIndex = tarjetasRecuerdo.length - visibles;
+        
+        if (indexRecuerdo > maxIndex) indexRecuerdo = 0; 
+        if (indexRecuerdo < 0) indexRecuerdo = maxIndex; 
+
+        const tarjetaAncho = tarjetasRecuerdo[0].getBoundingClientRect().width;
+        const desplazamiento = indexRecuerdo * (tarjetaAncho + 30); 
+        trackRecuerdos.style.transform = `translateX(-${desplazamiento}px)`;
     }
 
     function siguienteRecuerdo() {
         indexRecuerdo++;
-        moverCarousel();
+        moverCarouselRecuerdos();
     }
 
-    function anteriorRecuerdo() {
-        indexRecuerdo--;
-        moverCarousel();
-    }
-
-    btnNext.addEventListener('click', () => {
+    btnNextRecuerdo.addEventListener('click', () => {
         siguienteRecuerdo();
         reiniciarAutoPlay();
     });
 
-    btnPrev.addEventListener('click', () => {
-        anteriorRecuerdo();
+    btnPrevRecuerdo.addEventListener('click', () => {
+        indexRecuerdo--;
+        moverCarouselRecuerdos();
         reiniciarAutoPlay();
     });
 
-    function iniciarAutoPlay() {
-        autoPlayInterval = setInterval(siguienteRecuerdo, 5000); 
-    }
-
-    function reiniciarAutoPlay() {
-        clearInterval(autoPlayInterval);
-        iniciarAutoPlay();
-    }
-
-    window.addEventListener('resize', moverCarousel);
+    function iniciarAutoPlay() { autoPlayInterval = setInterval(siguienteRecuerdo, 5000); }
+    function reiniciarAutoPlay() { clearInterval(autoPlayInterval); iniciarAutoPlay(); }
+    
+    window.addEventListener('resize', moverCarouselRecuerdos);
     iniciarAutoPlay();
+
+    // --- 11. LÓGICA DEL CARRUSEL DE HABITACIONES ---
+    const trackHabitaciones = document.getElementById('trackHabitaciones');
+    const btnPrevHabitacion = document.getElementById('btnPrevHabitacion');
+    const btnNextHabitacion = document.getElementById('btnNextHabitacion');
+    const tarjetasHabitacion = document.querySelectorAll('.track-habitaciones .tarjeta');
+    
+    let indexHabitacion = 0;
+
+    function moverCarouselHabitacion() {
+        const visibles = obtenerTarjetasVisibles();
+        const maxIndex = tarjetasHabitacion.length - visibles;
+        
+        if (indexHabitacion > maxIndex) indexHabitacion = 0; 
+        if (indexHabitacion < 0) indexHabitacion = maxIndex; 
+
+        const tarjetaAncho = tarjetasHabitacion[0].getBoundingClientRect().width;
+        const desplazamiento = indexHabitacion * (tarjetaAncho + 30); 
+        trackHabitaciones.style.transform = `translateX(-${desplazamiento}px)`;
+    }
+
+    btnNextHabitacion.addEventListener('click', () => {
+        indexHabitacion++;
+        moverCarouselHabitacion();
+    });
+
+    btnPrevHabitacion.addEventListener('click', () => {
+        indexHabitacion--;
+        moverCarouselHabitacion();
+    });
+
+    window.addEventListener('resize', moverCarouselHabitacion);
+
 </script>
 </body>
 </html>
